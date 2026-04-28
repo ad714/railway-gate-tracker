@@ -1,0 +1,590 @@
+[
+    {
+        "station_name": "Kuzhithurai",
+        "station_code": "KZT",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.3178,
+        "lon": 77.1917
+    },
+    {
+        "station_name": "Parassala",
+        "station_code": "PASA",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.3431017,
+        "lon": 77.1525963
+    },
+    {
+        "station_name": "Dhanuvachapuram (halt)",
+        "station_code": "DAVM",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.383914299999999,
+        "lon": 77.1283821
+    },
+    {
+        "station_name": "Amaravila (halt)",
+        "station_code": "AMVA",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.3885185,
+        "lon": 77.1053673
+    },
+    {
+        "station_name": "Neyyattinkara",
+        "station_code": "NYY",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.4026673,
+        "lon": 77.0860939
+    },
+    {
+        "station_name": "Balaramapuram",
+        "station_code": "BRAM",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.4320632,
+        "lon": 77.0502803
+    },
+    {
+        "station_name": "Nemom",
+        "station_code": "NEM",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.4578981,
+        "lon": 76.9993734
+    },
+    {
+        "station_name": "Thiruvananthapuram Central",
+        "station_code": "TVC",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.5241391,
+        "lon": 76.9366376
+    },
+    {
+        "station_name": "Thiruvananthapuram pettah",
+        "station_code": "TVP",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.4950308,
+        "lon": 76.9293634
+    },
+    {
+        "station_name": "Kochuveli",
+        "station_code": "KCVL",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.506478999999999,
+        "lon": 76.8943206
+    },
+    {
+        "station_name": "Veli (halt)",
+        "station_code": "VELI",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.5172194,
+        "lon": 76.88290549999999
+    },
+    {
+        "station_name": "Kazhakuttam",
+        "station_code": "KZK",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.5685708,
+        "lon": 76.87313329999999
+    },
+    {
+        "station_name": "Kaniyapuram",
+        "station_code": "KXP",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.584418399999999,
+        "lon": 76.85033
+    },
+    {
+        "station_name": "Murukkampuzha",
+        "station_code": "MQU",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.6132024,
+        "lon": 76.83049190000001
+    },
+    {
+        "station_name": "Perunguzhi (halt)",
+        "station_code": "PGZ",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.6316619,
+        "lon": 76.81323309999999
+    },
+    {
+        "station_name": "Chirayinkeezh",
+        "station_code": "CRY",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.655869599999999,
+        "lon": 76.7831744
+    },
+    {
+        "station_name": "Kadakavur",
+        "station_code": "KVU",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.6832224,
+        "lon": 76.7710316
+    },
+    {
+        "station_name": "Akathumuri (halt)",
+        "station_code": "AMY",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.7030243,
+        "lon": 76.7581794
+    },
+    {
+        "station_name": "Varkala Shivagiri",
+        "station_code": "VAK",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.7388792,
+        "lon": 76.7324107
+    },
+    {
+        "station_name": "Edavai",
+        "station_code": "EVA",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.7645839,
+        "lon": 76.6959358
+    },
+    {
+        "station_name": "Kappil",
+        "station_code": "KFI",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.7808922,
+        "lon": 76.6773655
+    },
+    {
+        "station_name": "Paravur",
+        "station_code": "PVU",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.814188999999999,
+        "lon": 76.6672602
+    },
+    {
+        "station_name": "Mayyanad",
+        "station_code": "MYY",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.850860899999999,
+        "lon": 76.649762
+    },
+    {
+        "station_name": "Iravipuram (halt)",
+        "station_code": "IRP",
+        "route": "Trivandrum to Kollam",
+        "lat": 8.8596135,
+        "lon": 76.6196097
+    },
+    {
+        "station_name": "Kollam Jn",
+        "station_code": "QLN",
+        "route": ["Trivandrum to Kollam", "Kollam to Kayamkulam", "Kollam - Aryankavu"],
+        "lat": 8.8932118,
+        "lon": 76.6141396
+    },
+    {
+        "station_name": "Perinad (halt)",
+        "station_code": "PRND",
+        "route": "Kollam to Kayamkulam",
+        "lat": 8.943007,
+        "lon": 76.6080162
+    },
+    {
+        "station_name": "Munroturuttu (halt)",
+        "station_code": "MQO",
+        "route": "Kollam to Kayamkulam",
+        "lat": 8.9946666,
+        "lon": 76.61152129999999
+    },
+    {
+        "station_name": "Sasthankotta",
+        "station_code": "STKT",
+        "route": "Kollam to Kayamkulam",
+        "lat": 9.0364612,
+        "lon": 76.6239423
+    },
+    {
+        "station_name": "Karunagapalli",
+        "station_code": "KPY",
+        "route": "Kollam to Kayamkulam",
+        "lat": 9.0597934,
+        "lon": 76.5355902
+    },
+    {
+        "station_name": "Ochira",
+        "station_code": "OCR",
+        "route": "Kollam to Kayamkulam",
+        "lat": 9.125517199999999,
+        "lon": 76.5097205
+    },
+    {
+        "station_name": "Kayamkulam Jn",
+        "station_code": "KYJ",
+        "route": ["Kollam to Kayamkulam", "Kayamkulam - Ernakulam via Alappuzha", "Kayamkulam via Kottayam to Ernakulam"],
+        "lat": 9.1748422,
+        "lon": 76.5013352
+    },
+    {
+        "station_name": "Cheppad (halt)",
+        "station_code": "CHPD",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.233229900000001,
+        "lon": 76.4769697
+    },
+    {
+        "station_name": "Harippad",
+        "station_code": "HAD",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.2798559,
+        "lon": 76.4592235
+    },
+    {
+        "station_name": "Karuvatta (halt)",
+        "station_code": "KVTA",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.316756999999999,
+        "lon": 76.431255
+    },
+    {
+        "station_name": "Takazhi (halt)",
+        "station_code": "TZH",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.3706608,
+        "lon": 76.4114733
+    },
+    {
+        "station_name": "Ambalapuzha",
+        "station_code": "AMPA",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.378651399999999,
+        "lon": 76.362836
+    },
+    {
+        "station_name": "Punnapra (halt)",
+        "station_code": "PNPR",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.4400956,
+        "lon": 76.3433635
+    },
+    {
+        "station_name": "Alappuzha",
+        "station_code": "ALLP",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.498066699999999,
+        "lon": 76.3388484
+    },
+    {
+        "station_name": "Tumboli (halt)",
+        "station_code": "TMPY",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.529540599999999,
+        "lon": 76.3130712
+    },
+    {
+        "station_name": "Kalavur (halt)",
+        "station_code": "KAVR",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.5680236,
+        "lon": 76.3185482
+    },
+    {
+        "station_name": "Mararikulam",
+        "station_code": "MAKM",
+        "route": "Kayamkulam - Eranakulam via Alappuzha",
+        "lat": 9.598735999999999,
+        "lon": 76.3116235
+    },
+    {
+        "station_name": "Tiruvizha (halt)",
+        "station_code": "TRVZ",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.6425551,
+        "lon": 76.32651980000001
+    },
+    {
+        "station_name": "Cherthala",
+        "station_code": "SRTL",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.674136299999999,
+        "lon": 76.3400963
+    },
+    {
+        "station_name": "Vayalar (halt)",
+        "station_code": "VAY",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.7167037,
+        "lon": 76.33767859999999
+    },
+    {
+        "station_name": "Turavur",
+        "station_code": "TUVR",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.7704378,
+        "lon": 76.3203091
+    },
+    {
+        "station_name": "Ezhupunna (halt)",
+        "station_code": "EZP",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.823449199999999,
+        "lon": 76.3110987
+    },
+    {
+        "station_name": "Aroor (halt)",
+        "station_code": "AROR",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.8669066,
+        "lon": 76.2995658
+    },
+    {
+        "station_name": "Kumblam",
+        "station_code": "KUMM",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.906,
+        "lon": 76.311
+    },
+    {
+        "station_name": "Tirunettur (halt)",
+        "station_code": "TNU",
+        "route": "Kayamkulam - Ernakulam via Alappuzha",
+        "lat": 9.9342008,
+        "lon": 76.30845760000001
+    },
+    {
+        "station_name": "Mavelikara",
+        "station_code": "MVLK",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.250575699999999,
+        "lon": 76.5400806
+    },
+    {
+        "station_name": "Cheriyanad",
+        "station_code": "CYN",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.277268,
+        "lon": 76.5843577
+    },
+    {
+        "station_name": "Chengannur",
+        "station_code": "CNGR",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.318327499999999,
+        "lon": 76.61108449999999
+    },
+    {
+        "station_name": "Tiruvalla",
+        "station_code": "TRVL",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.3852725,
+        "lon": 76.57498559999999
+    },
+    {
+        "station_name": "Changanaseri",
+        "station_code": "CGY",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.446494099999999,
+        "lon": 76.54021670000002
+    },
+    {
+        "station_name": "Chingavanam",
+        "station_code": "CGV",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.5247693,
+        "lon": 76.5246636
+    },
+    {
+        "station_name": "Kottayam",
+        "station_code": "KTYM",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.591566799999999,
+        "lon": 76.5221531
+    },
+    {
+        "station_name": "Kumaranallur (halt)",
+        "station_code": "KFQ",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.617447799999999,
+        "lon": 76.5859724
+    },
+    {
+        "station_name": "Ettumanur",
+        "station_code": "ETM",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.670626,
+        "lon": 76.55788199999999
+    },
+    {
+        "station_name": "Kuruppantara",
+        "station_code": "KRPP",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.7405175,
+        "lon": 76.515222
+    },
+    {
+        "station_name": "Kaduturutty (halt)",
+        "station_code": "KDTY",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.7679448,
+        "lon": 76.4907353
+    },
+    {
+        "station_name": "Vaikom Road",
+        "station_code": "VARD",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.6755182,
+        "lon": 76.5582237
+    },
+    {
+        "station_name": "Piravam Road",
+        "station_code": "PVRD",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.8566465,
+        "lon": 76.5227605
+    },
+    {
+        "station_name": "Kanjiramittam(halt)",
+        "station_code": "KPTM",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.8533393,
+        "lon": 76.41581289999999
+    },
+    {
+        "station_name": "Mulanturutti",
+        "station_code": "MNTT",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.9003047,
+        "lon": 76.38442710000001
+    },
+    {
+        "station_name": "Chottanikkara Road (halt)",
+        "station_code": "KFE",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.9265112,
+        "lon": 76.3746612
+    },
+    {
+        "station_name": "Tripunitura",
+        "station_code": "TRTR",
+        "route": "Kayamkulam via Kottayam to Ernakulam",
+        "lat": 9.9486828,
+        "lon": 76.34636239999999
+    },
+    {
+        "station_name": "Ernakulam Jn",
+        "station_code": "ERS",
+        "route": ["Kayamkulam - Ernakulam via Alappuzha", "Kayamkulam via Kottayam to Ernakulam"],
+        "lat": 9.9816358,
+        "lon": 76.2998842
+    },
+    {
+        "station_name": "Kilikollur",
+        "station_code": "KLQ",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9279504,
+        "lon": 76.6456031
+        },
+        {
+        "station_name": "Chandanattop(halt)",
+        "station_code": "CTPE",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.930034299999999,
+        "lon": 76.6415368
+        },
+        {
+        "station_name": "Kundara",
+        "station_code": "KUV",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9601841,
+        "lon": 76.6788091
+        },
+        {
+        "station_name": "Kundara East",
+        "station_code": "KFV",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9601841,
+        "lon": 76.6788091
+        },
+        {
+        "station_name": "Ezhukone",
+        "station_code": "EKN",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9858432,
+        "lon": 76.71633589999999
+        },
+        {
+        "station_name": "Kottarakkara",
+        "station_code": "KKZ",
+        "route": "Kollam - Aryankavu",
+        "lat": 9.005556499999999,
+        "lon": 76.78314979999999
+        },
+        {
+        "station_name": "Kuri",
+        "station_code": "KIF",
+        "route": "Kollam - Aryankavu",
+        "lat": 10.1631526,
+        "lon": 76.64127119999999
+        },
+        {
+        "station_name": "Auvaneswsarem",
+        "station_code": "AVS",
+        "route": "Kollam - Aryankavu",
+        "lat": 9.0354049,
+        "lon": 76.8519465
+        },
+        {
+        "station_name": "Punalur",
+        "station_code": "PUU",
+        "route": "Kollam - Aryankavu",
+        "lat": 9.0176117,
+        "lon": 76.9260936
+        },
+        {
+        "station_name": "Edamann",
+        "station_code": "EDN",
+        "route": "Kollam - Aryankavu",
+        "lat": 9.0062202,
+        "lon": 76.98158769999999
+        },
+        {
+        "station_name": "Ottakkal",
+        "station_code": "OKL",
+        "route": "Kollam - Aryankavu",
+        "lat": 10.9989697,
+        "lon": 75.9917634
+        },
+        {
+        "station_name": "Thenmalai",
+        "station_code": "TML",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9632448,
+        "lon": 77.0650809
+        },
+        {
+        "station_name": "Kathuruthy (halt)",
+        "station_code": "KTHY",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.969966099999999,
+        "lon": 77.097989
+        },
+        {
+        "station_name": "Edapalayam (halt)",
+        "station_code": "EDP",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.96203,
+        "lon": 77.11904
+        },
+        {
+        "station_name": "New Aryankavu",
+        "station_code": "AYVN",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.955244,
+        "lon": 77.134751
+        },
+        {
+        "station_name": "Aryankavu",
+        "station_code": "AYV",
+        "route": "Kollam - Aryankavu",
+        "lat": 8.9750633,
+        "lon": 77.1494408
+        },
+        {
+            "station_name": "Bhagavathipuram",
+            "station_code": "BJM",
+            "route": "Kollam - Aryankavu",
+            "lat": 8.9778,
+            "lon": 77.2086
+        }
+]
