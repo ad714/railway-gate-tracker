@@ -1,0 +1,59 @@
+# RGT — Session Handoff
+
+_Last updated: 2026-06-21_
+
+Pick up here. This is the single source of truth for project state.
+
+## Canonical locations (everything else was deleted)
+- **Working copy:** `H:\RGT` (the ONLY active copy)
+- **GitHub (active):** https://github.com/ad714/railway-gate-tracker  (branch `master`)
+- **GitHub (archived V1 reference, has the original working Flask app):** `ad714/Railway_Gate_Tracker_RGT`
+- **Cold backup of all deleted copies (1.4 GB):** `H:\RGTApp\_RGT_cold_archive_2026-06\`
+- Plans/docs in repo: `RGT_MASTER_PLAN.md`, `docs/MARKET_STUDY.md`, this file.
+
+## What the project is
+Mobile-first (Expo/React Native + TypeScript) app that predicts which railway level-crossing
+**gates** are closed along a driving route, and for how long, from **live train positions**.
+V2 frontend is polished but ran on mock data; we are wiring real data in.
+
+## Status by workstream
+- **A — Repo consolidation: DONE.** 7 copies + 4 repos -> 1 active + 1 archived. Research
+  preserved in `H:\RGT\research\`.
+- **B — RailRadar integration: CODE DONE, not yet live.** Selenium scraper replaced.
+  - `backend/railradar_client.py` — RailRadar REST client (`X-API-Key`), drop-in for old scraper.
+    The `_extract_*` helpers are the ONLY place that knows RailRadar's field names.
+  - `backend/predictor.py` — heuristic that outputs the app's `GateSummary`
+    (status/confidence/expectedDelayMin/timeWindow). Smoke-tested, works.
+  - `backend/api/backend.py` — fixed dead hardcoded station path -> `backend/data/...`,
+    loads `.env`, wires predictor into `POST /railway_data`.
+  - `backend/probe.py`, `requirements.txt`, `.env.example` — setup + live-shape capture.
+- **C — Production / accuracy: NOT STARTED.** Next up.
+- **D — Market study: DONE.** See `docs/MARKET_STUDY.md`.
+
+## BLOCKING next action (user) to make B live
+1. Sign up at https://railradar.in -> create API key -> pick tier (free to start).
+2. `cp backend/.env.example backend/.env` and paste the key into `RAILRADAR_API_KEY`.
+3. `cd backend && pip install -r requirements.txt && python probe.py`
+4. Paste probe output back -> finalise field parsing in `railradar_client._extract_*`.
+
+## Next work after key (Workstream C)
+- **Pick ONE launch corridor** (decision needed: which city/route?).
+- Build the **level-crossing dataset** for it (lat/lng, interlocked?, gate id) — source from
+  OpenStreetMap `railway=level_crossing` + manual verification. This is the real bottleneck.
+- **"Gates along my route" source** is still unsolved: V1 had the app detect gates via Google
+  Maps + a gate dataset and POST them to the backend. Decide: app-side detection (needs Google
+  Directions + spatial query) vs. backend route->gates endpoint.
+- Build the **accuracy harness**: log predicted vs actual closures for ~1-2 weeks. Target a
+  headline "X% accurate within 5 min" — this number gates usefulness, adoption, and funding.
+
+## Key facts / decisions locked
+- Data source = **RailRadar API** (not scraping). Verify commercial-use ToS before launch.
+- Platform = **mobile-first Expo**; web later via React Native Web.
+- Business model (recommended) = **open-core / freemium consumer + B2B(fleet)/B2G**; lead
+  revenue with fleets. Market study concluded standalone B2C adoption is the weakest path.
+- The app's data contract is `src/types/gate.ts` `GateSummary`; the predictor already matches it.
+
+## Gotchas
+- Google/Stitch key lives in gitignored `H:\RGT\.env` (`stitch_api_key`) — safe, NOT committed.
+- Windows: `strftime('%-I')` fails; predictor uses a `_fmt_safe` fallback.
+- `.gitignore` covers `backend/.env`, `__pycache__/`, `*.log`.
