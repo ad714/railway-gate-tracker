@@ -8,8 +8,18 @@ from flask_cors import CORS
 from pprint import pformat
 import concurrent.futures
 
-# Import the live train data scraper
-from NTES_scraper import fetch_live_train_data
+# Load environment (RAILRADAR_API_KEY, etc.) from backend/.env if present
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except Exception:
+    pass
+
+# Live train data now comes from the RailRadar API (was the Selenium NTES scraper)
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from railradar_client import fetch_live_train_data
+from predictor import predict_gate
 
 app = Flask(__name__)
 CORS(app)
@@ -24,8 +34,8 @@ logging.basicConfig(
     ]
 )
 
-# Absolute path to station data
-STATIONS_JSON_PATH = r"H:\RGTApp\RGT\backend\kerala_railway_stations.json"
+# Station data lives in the repo (backend/data/), resolved relative to this file
+STATIONS_JSON_PATH = str(Path(__file__).resolve().parent.parent / "data" / "kerala_railway_stations.json")
 
 # Load station data
 try:
@@ -225,10 +235,12 @@ def process_gates():
         
         app.logger.info(f"Live train data fetched: {pformat(live_trains_data, indent=2)}")
         
-        # Add live train data to results
+        # Add live train data to results, then run the closure predictor
         for result, live_trains in zip(results, live_trains_data):
             result["live_trains"] = live_trains["live_trains"]
-        
+            prediction = predict_gate(result)
+            result["prediction"] = prediction
+
         app.logger.info(f"Returning results for {len(results)} gates with live train data")
         app.logger.debug(f"Final response:\n{pformat({'gates': results}, indent=2)}")
         return jsonify({"gates": results}), 200

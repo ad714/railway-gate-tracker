@@ -45,3 +45,9 @@ yarn-error.*
 
 # stitch downloads
 stitch_downloads/
+
+# python backend
+__pycache__/
+*.pyc
+backend/.env
+backend/*.log
