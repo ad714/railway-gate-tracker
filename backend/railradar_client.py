@@ -2,12 +2,12 @@
 RailRadar API client — replaces the old Selenium NTES_scraper.
 
 Docs: https://railradar.in/docs   Base: https://api.railradar.in
-Auth: header  X-API-Key: <key>   (read from env RAILRADAR_API_KEY)
+Auth: header  X-Api-Key: <key>  (or  Authorization: Bearer <key>) — read from env RAILRADAR_API_KEY
 
-Endpoints used:
-  GET /api/v1/trains/{trainNo}        -> live status incl. liveData.currentPosition
-  GET /api/v1/trains/between          -> trains between two station codes (?from=&to=)
-  GET /api/v1/stations/{code}/live    -> live station board
+Endpoints used (confirmed against the OpenAPI spec):
+  GET /v1/trains/{number}/live          -> live status incl. currentLocation.coordinates (GPS)
+  GET /v1/trains/between/{from}/{to}    -> trains between two station codes (?live=true)
+  GET /v1/stations/{code}/live          -> live station board (?hours=2|4|6|8)
 
 NOTE: exact response field names are confirmed against a real response via probe.py.
 Parsing below is defensive and centralised in the _extract_* helpers so it is the
@@ -34,7 +34,7 @@ def _headers():
             "RAILRADAR_API_KEY is not set. Sign up at https://railradar.in, "
             "create an API key, and put it in backend/.env"
         )
-    return {"X-API-Key": API_KEY, "Accept": "application/json"}
+    return {"X-Api-Key": API_KEY, "Accept": "application/json"}
 
 
 def _get(path, params=None):
@@ -54,17 +54,20 @@ def _get(path, params=None):
 # ---------------------------------------------------------------------------
 # Raw endpoint wrappers
 # ---------------------------------------------------------------------------
-def get_train_status(train_no, journey_date=None):
-    params = {"journeyDate": journey_date} if journey_date else None
-    return _get(f"/api/v1/trains/{train_no}", params)
+def get_train_status(train_no, date=None):
+    params = {"includeCoordinates": "true"}
+    if date:
+        params["date"] = date
+    return _get(f"/v1/trains/{train_no}/live", params)
 
 
-def get_trains_between(from_code, to_code):
-    return _get("/api/v1/trains/between", {"from": from_code, "to": to_code})
+def get_trains_between(from_code, to_code, live=True):
+    params = {"live": "true"} if live else None
+    return _get(f"/v1/trains/between/{from_code}/{to_code}", params)
 
 
-def get_station_live(station_code):
-    return _get(f"/api/v1/stations/{station_code}/live")
+def get_station_live(station_code, hours=4):
+    return _get(f"/v1/stations/{station_code}/live", {"hours": hours})
 
 
 # ---------------------------------------------------------------------------
