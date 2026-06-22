@@ -15,6 +15,7 @@ only thing to adjust once we have a live sample.
 """
 import os
 import logging
+from datetime import datetime, timezone
 import requests
 
 log = logging.getLogger(__name__)
@@ -72,29 +73,8 @@ def get_station_live(station_code, hours=4):
 
 # ---------------------------------------------------------------------------
 # Normalisation — the ONLY place that knows RailRadar's field names.
-# Confirm/adjust these against probe.py output, then everything downstream works.
+# Field names below are CONFIRMED against live /v1/stations/{code}/live responses.
 # ---------------------------------------------------------------------------
-def _extract_trains_between(payload):
-    """Return a list of {train_no, train_name, delay_min, last_station, next_station,
-    eta_next_min} from a /trains/between response. Defensive against shape changes."""
-    data = payload.get("data", payload) if isinstance(payload, dict) else payload
-    rows = data.get("trains") or data.get("results") or data if isinstance(data, dict) else data
-    trains = []
-    for t in (rows or []):
-        live = t.get("liveData") or t.get("live") or {}
-        pos = live.get("currentPosition") or {}
-        trains.append({
-            "train_no": t.get("number") or t.get("trainNumber") or t.get("train_no"),
-            "train_name": t.get("name") or t.get("trainName"),
-            "delay_min": _to_int(live.get("delayMinutes") or pos.get("delay") or live.get("delay")),
-            "last_station": pos.get("lastStation") or pos.get("last_station"),
-            "next_station": pos.get("nextStation") or pos.get("next_station"),
-            "eta_next_min": _to_int(pos.get("etaNextStationMin") or pos.get("etaMinutes")),
-            "raw": t,
-        })
-    return trains
-
-
 def _to_int(v):
     try:
         return int(round(float(v)))
@@ -102,25 +82,66 @@ def _to_int(v):
         return None
 
 
+def _parse_dt(s):
+    if not s:
+        return None
+    try:
+        return datetime.fromisoformat(s)  # handles the "+05:30" offset
+    except (TypeError, ValueError):
+        return None
+
+
+# Keep only trains relevant to an imminent closure: from just-arrived to ~90 min out.
+_ETA_WINDOW_MIN = (-3, 90)
+
+
+def _extract_station_board(payload, station_code, now=None):
+    """Normalise /v1/stations/{code}/live -> trains approaching THIS station, each as
+    {train_no, train_name, delay_min, next_station, eta_next_min, live_type}.
+    Since the board is keyed on `station_code`, every train here is heading to/at it,
+    so `next_station` is set to `station_code` and `eta_next_min` is the ETA to the gate."""
+    now = now or datetime.now(timezone.utc)
+    data = payload.get("data", payload) if isinstance(payload, dict) else {}
+    out = []
+    for t in (data.get("trains") or []):
+        tr = t.get("train") or {}
+        live = t.get("live") or {}
+        eta_dt = _parse_dt(live.get("expectedArrivalTime") or live.get("expectedDepartureTime"))
+        eta_min = round((eta_dt - now).total_seconds() / 60) if eta_dt else None
+        if eta_min is not None and not (_ETA_WINDOW_MIN[0] <= eta_min <= _ETA_WINDOW_MIN[1]):
+            continue
+        out.append({
+            "train_no": tr.get("number"),
+            "train_name": tr.get("name"),
+            "delay_min": _to_int(live.get("delayMinutes")),
+            "next_station": station_code,
+            "eta_next_min": eta_min,
+            "live_type": live.get("type"),
+        })
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Drop-in replacement for the old scraper's fetch_live_train_data(...)
+# Primary signal: the live board of each gate's NEAREST station.
+# (Known v1 limitation: a station board lists trains that halt at it; express trains
+#  passing through without a halt may be under-counted. Revisit in the accuracy phase
+#  with a trains-between / route-position fallback. Tracked in docs/HANDOFF.md.)
 # ---------------------------------------------------------------------------
-def fetch_live_train_data(payload, mode="between_junctions"):
-    """For each gate, fetch live trains running between its controlling junctions.
+def fetch_live_train_data(payload, mode="station_board"):
+    """For each gate, fetch live trains approaching its nearest station.
 
-    payload = {"gates": [ {..., "junctions": {"before": {code}, "after": {code}}}, ... ]}
+    payload = {"gates": [ {..., "nearest_station": {"code": ...}}, ... ]}
     Returns a list aligned with gates: [{"live_trains": [...]}, ...]
     """
     results = []
     for gate in payload.get("gates", []):
-        j = gate.get("junctions") or {}
-        before = (j.get("before") or {}).get("code")
-        after = (j.get("after") or {}).get("code")
+        code = (gate.get("nearest_station") or {}).get("code")
         live_trains = []
-        if before and after:
+        if code:
             try:
-                live_trains = _extract_trains_between(get_trains_between(before, after))
+                live_trains = _extract_station_board(get_station_live(code, hours=4), code)
             except RailRadarError as e:
-                log.warning("trains_between(%s,%s) failed: %s", before, after, e)
+                log.warning("station_live(%s) failed: %s", code, e)
         results.append({"live_trains": live_trains})
     return results

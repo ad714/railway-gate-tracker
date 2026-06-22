@@ -25,7 +25,14 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
 ## Status by workstream
 - **A — Repo consolidation: DONE.** 7 copies + 4 repos -> 1 active + 1 archived. Research
   preserved in `H:\RGT\research\`.
-- **B — RailRadar integration: CODE DONE, not yet live.** Selenium scraper replaced.
+- **B — RailRadar integration: DONE & LIVE-VALIDATED (2026-06-23).** Selenium scraper replaced;
+  full pipeline tested against the live RailRadar API (e.g. nearest-station ERS -> imminent train
+  -> CLOSURE_LIKELY/HIGH with an IST time window). Response field names confirmed from live JSON.
+  Predictor data source = the **live board of each gate's nearest station** (`/v1/stations/{code}/live`):
+  hands us `expectedArrivalTime` + `delayMinutes` directly, one call per gate.
+  KNOWN v1 LIMITATION: a station board lists trains that HALT there; express trains passing through
+  without a halt may be under-counted -> revisit in the accuracy phase (Workstream C) with a
+  trains-between / route-position fallback. Predictor pins output to IST.
   - `backend/railradar_client.py` — RailRadar REST client, drop-in for old scraper.
     Endpoints CONFIRMED against the OpenAPI spec (base `https://api.railradar.in`):
     `GET /v1/trains/{n}/live` (incl. `currentLocation.coordinates` GPS),

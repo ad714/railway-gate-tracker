@@ -14,7 +14,9 @@ Tunables (minutes):
   GATE_OPEN_AFTER    gate typically reopens this long after the train clears
   IMMINENT_ETA       a train within this ETA of the gate's station -> closure likely
 """
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+IST = timezone(timedelta(hours=5, minutes=30))  # train times are IST; pin output to IST
 
 GATE_CLOSE_BEFORE = 5
 GATE_OPEN_AFTER = 3
@@ -38,7 +40,7 @@ def predict_gate(gate_context, now=None):
         nearest_station {code,name}, live_trains [normalised], ...
     Returns dict: {status, confidence, expectedDelayMin, timeWindow}.
     """
-    now = now or datetime.now()
+    now = now or datetime.now(IST)
     n = gate_context.get("nearest_station") or {}
     n_code = n.get("code")
     trains = gate_context.get("live_trains") or []
