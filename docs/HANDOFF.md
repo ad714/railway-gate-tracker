@@ -34,10 +34,10 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
     loads `.env`, wires predictor into `POST /railway_data`.
   - `backend/probe.py`, `requirements.txt`, `.env.example` — setup + live-shape capture.
 - **C — Production / accuracy: NOT STARTED.**
-- **E — UI/UX revamp (NEW, user-requested): NOT STARTED.** Redesign the Expo app to feel
-  "snappy". Independent of the RailRadar key — can run in parallel. Scope to confirm with user:
-  is "snappy" mainly (i) performance/perceived responsiveness (fast nav transitions, no jank,
-  skeleton loaders, optimistic UI, FlatList tuning) or (ii) a visual/UX redesign, or both?
+- **E — UI/UX revamp (NEW, user-requested): NOT STARTED — confirmed scope, awaiting user.**
+  SCOPE (confirmed): FULL revamp = performance/feel + visual redesign + UX flow (all three).
+  TIMING (confirmed): do NOT start until the user is back; start it together then. Independent
+  of the RailRadar key (can render against mock data).
   Current app: 2 screens (`HomeScreen`, `RouteResultScreen`) switched by boolean state in
   `App.tsx` (no real navigation library wired despite deps); theme tokens in `src/theme/tokens.ts`;
   gate list via FlatList + mock data. Likely wins: real navigation + animated transitions, loading
