@@ -63,6 +63,18 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
 - Build the **accuracy harness**: log predicted vs actual closures for ~1-2 weeks. Target a
   headline "X% accurate within 5 min" — this number gates usefulness, adoption, and funding.
 
+## Working rules (adopted from PlayON, 2026-06-22)
+Same working rules as the PlayON repo now apply here:
+- **Commit style:** no `Co-Authored-By: Claude` trailer; plain, conventional-style messages.
+- **Auto-push:** commit AND push approved/working changes to `origin master` without asking.
+- **Verify before push:** `npx tsc --noEmit` (+ jest if tests touched, `py_compile` for backend);
+  a clean build is not proof it works.
+- **Handoff maintenance:** update this file automatically as the final step of any substantive
+  change; commit/push it with the change. Sign off when done + verified.
+- **Feature mockups:** after a notable feature, give a polished MOBILE-view mockup (visualize tool).
+These are persisted in memory (`commit-style`, `auto-push-preference`, `verify-before-push`,
+`handoff-maintenance`, `feature-mockups`). Git-permission allowlist mirrored in `.claude/settings.local.json`.
+
 ## Key facts / decisions locked
 - Data source = **RailRadar API** (not scraping). Verify commercial-use ToS before launch.
 - Platform = **mobile-first Expo**; web later via React Native Web.
