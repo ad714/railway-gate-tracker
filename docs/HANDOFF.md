@@ -1,12 +1,13 @@
 # RGT — Session Handoff
 
-_Last updated: 2026-06-21_
+_Last updated: 2026-06-23_
 
 Pick up here. This is the single source of truth for project state.
 
-> **Immediate next steps:** (1) user is provisioning the RailRadar key into `backend/.env`
-> -> then run `backend/probe.py` and finalise B. (2) Then a **UI/UX revamp for snappiness**
-> (Workstream E below).
+> **Immediate next steps:** RailRadar key IS set in `backend/.env` and **B is live-validated**.
+> Next: (1) **Workstream E — full UI/UX revamp** (start with the user when they're back;
+> this session produced a mobile mockup of the current Route Result screen as the baseline).
+> (2) **Workstream C** — pick a launch corridor + build the gate dataset + accuracy harness.
 
 ## Canonical locations (everything else was deleted)
 - **Working copy:** `H:\RGT` (the ONLY active copy)
@@ -38,9 +39,10 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
     `GET /v1/trains/{n}/live` (incl. `currentLocation.coordinates` GPS),
     `GET /v1/trains/between/{from}/{to}?live=true`, `GET /v1/stations/{code}/live?hours=4`.
     Auth: `X-Api-Key: <key>` (or `Authorization: Bearer <key>`). The `_extract_*` helpers are the
-    ONLY place that knows RailRadar's response field names — confirm them via probe once key is in.
+    ONLY place that knows RailRadar's response field names — CONFIRMED against live JSON
+    (`_extract_station_board`).
   - `backend/predictor.py` — heuristic that outputs the app's `GateSummary`
-    (status/confidence/expectedDelayMin/timeWindow). Smoke-tested, works.
+    (status/confidence/expectedDelayMin/timeWindow). Live-validated against the RailRadar API.
   - `backend/api/backend.py` — fixed dead hardcoded station path -> `backend/data/...`,
     loads `.env`, wires predictor into `POST /railway_data`.
   - `backend/probe.py`, `requirements.txt`, `.env.example` — setup + live-shape capture.
@@ -58,13 +60,13 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
   `docs/RGT_Market_Study.pdf` (source `docs/RGT_Market_Study.html`). To re-render the PDF after
   editing the HTML: `chrome --headless --print-to-pdf=docs/RGT_Market_Study.pdf --print-to-pdf-no-header file:///H:/RGT/docs/RGT_Market_Study.html`.
 
-## BLOCKING next action (user) to make B live
-1. Sign up at https://railradar.in -> create API key -> pick tier (free to start).
-2. `cp backend/.env.example backend/.env` and paste the key into `RAILRADAR_API_KEY`.
-3. `cd backend && pip install -r requirements.txt && python probe.py`
-4. Paste probe output back -> finalise field parsing in `railradar_client._extract_*`.
+## B is LIVE — env is set
+RailRadar key is in `backend/.env` (`RAILRADAR_API_KEY`); deps installed. Quick re-validate:
+`cd backend && python probe.py` (dumps live shapes), or run the end-to-end check —
+`fetch_live_train_data` for a gate with `nearest_station.code` -> `predict_gate`. ToS for
+commercial use still to be confirmed before public launch.
 
-## Next work after key (Workstream C)
+## Next work (Workstream C)
 - **Pick ONE launch corridor** (decision needed: which city/route?).
 - Build the **level-crossing dataset** for it (lat/lng, interlocked?, gate id) — source from
   OpenStreetMap `railway=level_crossing` + manual verification. This is the real bottleneck.
