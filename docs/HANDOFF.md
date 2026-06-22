@@ -26,8 +26,12 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
 - **A — Repo consolidation: DONE.** 7 copies + 4 repos -> 1 active + 1 archived. Research
   preserved in `H:\RGT\research\`.
 - **B — RailRadar integration: CODE DONE, not yet live.** Selenium scraper replaced.
-  - `backend/railradar_client.py` — RailRadar REST client (`X-API-Key`), drop-in for old scraper.
-    The `_extract_*` helpers are the ONLY place that knows RailRadar's field names.
+  - `backend/railradar_client.py` — RailRadar REST client, drop-in for old scraper.
+    Endpoints CONFIRMED against the OpenAPI spec (base `https://api.railradar.in`):
+    `GET /v1/trains/{n}/live` (incl. `currentLocation.coordinates` GPS),
+    `GET /v1/trains/between/{from}/{to}?live=true`, `GET /v1/stations/{code}/live?hours=4`.
+    Auth: `X-Api-Key: <key>` (or `Authorization: Bearer <key>`). The `_extract_*` helpers are the
+    ONLY place that knows RailRadar's response field names — confirm them via probe once key is in.
   - `backend/predictor.py` — heuristic that outputs the app's `GateSummary`
     (status/confidence/expectedDelayMin/timeWindow). Smoke-tested, works.
   - `backend/api/backend.py` — fixed dead hardcoded station path -> `backend/data/...`,
