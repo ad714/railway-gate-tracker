@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RGT — Market Study & Feasibility Report</title>
+<style>
+  :root{
+    --ink:#1a2230; --muted:#5b6675; --line:#e2e7ee;
+    --brand:#0c5b63; --brand2:#0a3d6e; --accent:#c8861d;
+    --bg-soft:#f4f7f9; --bg-warn:#fef6e8; --bg-good:#eef6f1;
+  }
+  *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ margin:0; padding:0; color:var(--ink);
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; font-size:10.6pt; line-height:1.5; }
+  @page{ size:A4; margin:18mm 16mm 16mm 16mm; }
+  @page:first{ margin:0; }
+
+  /* ---------- Cover ---------- */
+  .cover{ height:297mm; width:100%; background:linear-gradient(150deg,#0a3d6e 0%,#0c5b63 100%);
+    color:#fff; padding:34mm 22mm; position:relative; page-break-after:always; }
+  .cover .kicker{ letter-spacing:.32em; text-transform:uppercase; font-size:9.5pt; opacity:.8; }
+  .cover h1{ font-size:34pt; line-height:1.08; margin:14mm 0 4mm; font-weight:700; }
+  .cover .sub{ font-size:13pt; opacity:.92; max-width:130mm; font-weight:400; }
+  .cover .rule{ width:46mm; height:3px; background:var(--accent); margin:9mm 0; border:0; }
+  .cover .meta{ position:absolute; bottom:30mm; left:22mm; right:22mm; font-size:10pt; opacity:.85;
+    border-top:1px solid rgba(255,255,255,.25); padding-top:5mm; display:flex; justify-content:space-between; }
+  .cover .qbox{ margin-top:12mm; background:rgba(255,255,255,.08); border-left:3px solid var(--accent);
+    padding:6mm 7mm; border-radius:2px; max-width:140mm; }
+  .cover .qbox b{ color:#ffd591; }
+
+  /* ---------- Typography ---------- */
+  h2{ font-size:15.5pt; color:var(--brand2); margin:11mm 0 2mm; padding-bottom:2mm;
+    border-bottom:2px solid var(--line); }
+  h2 .num{ color:var(--accent); font-weight:700; margin-right:3mm; }
+  h3{ font-size:11.5pt; color:var(--brand); margin:6mm 0 1mm; }
+  p{ margin:0 0 3mm; }
+  strong{ color:var(--ink); }
+  a{ color:var(--brand); text-decoration:none; word-break:break-all; }
+  ul{ margin:0 0 3mm; padding-left:6mm; } li{ margin:0 0 1.6mm; }
+  .lead{ font-size:11.5pt; color:var(--muted); }
+
+  /* ---------- Components ---------- */
+  .stats{ display:flex; gap:4mm; margin:5mm 0; }
+  .stat{ flex:1; background:var(--bg-soft); border:1px solid var(--line); border-radius:5px;
+    padding:5mm; text-align:center; }
+  .stat .big{ font-size:19pt; font-weight:700; color:var(--brand2); line-height:1; }
+  .stat .lbl{ font-size:8.4pt; color:var(--muted); margin-top:2mm; text-transform:uppercase; letter-spacing:.04em; }
+
+  .callout{ border-radius:5px; padding:4.5mm 5mm; margin:4mm 0; border:1px solid var(--line);
+    background:var(--bg-soft); page-break-inside:avoid; }
+  .callout.verdict{ background:var(--bg-good); border-color:#bfe0cf; }
+  .callout.warn{ background:var(--bg-warn); border-color:#f0dcb0; }
+  .callout .tag{ font-size:8.2pt; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); display:block; margin-bottom:1.5mm; }
+  .callout.verdict .tag{ color:var(--brand); }
+
+  .barrier{ page-break-inside:avoid; margin:0 0 3mm; }
+  .barrier b{ color:var(--brand2); }
+
+  .twocol{ display:flex; gap:5mm; }
+  .twocol > div{ flex:1; padding:4mm 4.5mm; border-radius:5px; }
+  .pro{ background:var(--bg-good); border:1px solid #bfe0cf; }
+  .con{ background:var(--bg-warn); border:1px solid #f0dcb0; }
+  .twocol h4{ margin:0 0 2mm; font-size:10pt; }
+
+  table.kv{ width:100%; border-collapse:collapse; margin:3mm 0; font-size:9.6pt; }
+  table.kv td{ border:1px solid var(--line); padding:2.4mm 3mm; vertical-align:top; }
+  table.kv tr td:first-child{ background:var(--bg-soft); font-weight:600; width:34%; color:var(--brand2); }
+
+  .sources{ font-size:8.6pt; color:var(--muted); }
+  .sources li{ margin-bottom:1.2mm; }
+  .footer-note{ margin-top:9mm; padding-top:3mm; border-top:1px solid var(--line);
+    font-size:8.6pt; color:var(--muted); }
+  .section{ page-break-inside:auto; }
+  h2{ page-break-after:avoid; } h3{ page-break-after:avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="kicker">Railway Gate Tracker · RGT</div>
+  <h1>Market Study &amp;<br>Feasibility Report</h1>
+  <hr class="rule">
+  <div class="sub">Predicting railway level-crossing gate closures along a driving route,
+  from live train positions. An honest assessment — usefulness, defensibility, and real-world adoption.</div>
+  <div class="qbox">
+    The question this report answers: it's an obvious, valuable idea — so
+    <b>why hasn't anyone already built it</b>, and <b>will people actually use it?</b>
+  </div>
+  <div class="meta">
+    <span>Prepared 21 June 2026</span>
+    <span>Confidential — internal strategy</span>
+  </div>
+</section>
+
+<!-- ============ BODY ============ -->
+<div class="section">
+
+<p class="lead">Four questions, answered straight: (1) How can RGT actually be useful?
+(2) Why hasn't everyone already built it? (3) Is it <em>really</em> useful?
+(4) Will people <em>actually</em> use it?</p>
+
+<div class="stats">
+  <div class="stat"><div class="big">~18,000</div><div class="lbl">Manned crossings still live</div></div>
+  <div class="stat"><div class="big">63%</div><div class="lbl">Of railway deaths at crossings</div></div>
+  <div class="stat"><div class="big">~120</div><div class="lbl">Vehicles queued per 10-min closure</div></div>
+  <div class="stat"><div class="big">&gt;3 min</div><div class="lbl">Wait that triggers risky behaviour</div></div>
+</div>
+
+<h2><span class="num">1</span>How RGT can be useful</h2>
+<p>The job-to-be-done: <strong>“Don't make me get stuck at a closed railway gate.”</strong>
+RGT predicts, <em>before</em> you commit to a route, which level crossings on it will be shut
+and for how long — so you can re-route, leave later, or simply not be surprised.</p>
+<p>Who it helps, ordered by how much the pain is worth money:</p>
+<ul>
+  <li><strong>Fleets &amp; time-critical drivers</strong> — logistics, delivery, school buses,
+  <strong>ambulances</strong>, cab aggregators. A blocked crossing is measurable lost time and fuel,
+  and a dispatcher routing many vehicles compounds the value. This is where the pain has a price tag.</li>
+  <li><strong>Daily commuters</strong> on corridors with busy crossings — the classic
+  “I left on time and still lost 12 minutes at the gate.”</li>
+  <li><strong>Traffic authorities / city planners</strong> — aggregate closure and congestion data
+  around crossings informs signal timing and ROB/RUB prioritisation.</li>
+</ul>
+<p>Why it's possible at all: India runs <strong>~18,000 manned level crossings</strong>, ~54%
+interlocked with signals (closures are deterministic from train movement), and live train positions
+are now obtainable via the <strong>RailRadar API</strong>. The raw materials exist; nobody has
+assembled them into a driver-facing predictor.</p>
+
+<h2><span class="num">2</span>Why hasn't everyone already built it?</h2>
+<p>This is the decisive question — “obvious + valuable + unbuilt” usually hides a barrier.
+Here are the real ones, which are also RGT's moat.</p>
+
+<p class="barrier"><b>(a) The live train data was genuinely hard to get — until recently.</b>
+There is no official public API for live Indian train data. NTES partner feeds are limited to
+approved partners; IRCTC sits behind captcha/OTP/anti-bot controls and a ToS that forbids scraping.
+Anyone attempting this resorted to brittle scraping (exactly what RGT v1 did with Selenium — and why
+it kept breaking). Paid aggregators like RailRadar are what make a <em>reliable</em> version newly
+feasible. The barrier didn't vanish; it became a ₹1,000/mo line item. Most earlier attempts died here.</p>
+
+<p class="barrier"><b>(b) The level-crossing dataset doesn't exist as clean open data.</b>
+You need precise gate coordinates, which gates are interlocked, and how each maps to bracketing
+stations — manual, hyperlocal, unglamorous data work, corridor by corridor. It doesn't scale from a
+laptop and it's boring, so it rarely gets done. Whoever builds it owns the moat.</p>
+
+<p class="barrier"><b>(c) It's a cross-domain orphan.</b>
+The problem sits <em>between</em> railways and roads. Train apps (RailYatri ~75M users, Where Is My
+Train, ixigo, ConfirmTkt) serve passengers; map apps own road routing but have no train-occupancy data.
+The valuable intersection — train data → road gate closure → your car's ETA — is nobody's core business.</p>
+
+<p class="barrier"><b>(d) Incumbent incentives point elsewhere.</b>
+Train apps monetise passenger intent (tickets/ads); a driver avoiding a crossing isn't their funnel.
+For Google Maps it's a low-priority, single-country, hyperlocal feature. Rational for them to skip —
+leaving room for a focused player.</p>
+
+<p class="barrier"><b>(e) The government's official answer is concrete, not software.</b>
+India is physically eliminating crossings via Rail-Over/Under-Bridges and interlocking — a
+~₹41,200 crore, multi-decade programme. But it's slow and leaves <strong>~18,000 crossings live for
+the next 10–20 years</strong> — a long interim window for a software mitigation. (The policy literature
+has explicitly proposed this exact app — strong validation, but also a hint the state could build it.)</p>
+
+<p class="barrier"><b>(f) Prediction is harder than a demo makes it look.</b>
+Nearest-station ≠ the exact minute a specific gate shuts. Trains skip halts, gates close 5–10 min early,
+interlocking and double-tracking vary. Turning “a train is near” into “this gate, this window, this
+confidence” — and <em>proving</em> it — is real engineering most prototypes never validate.</p>
+
+<div class="callout">
+  <span class="tag">Net</span>
+  It's unbuilt not because it's a bad idea, but because it requires stitching hard-to-get data with a
+  dataset nobody wants to build, across two domains neither incumbent owns, for a problem the state is
+  “solving” on a 20-year timeline. That combination is a moat for a focused builder.
+</div>
+
+<h2><span class="num">3</span>Is it <em>really</em> useful?</h2>
+<div class="twocol">
+  <div class="pro">
+    <h4>The case for</h4>
+    <ul>
+      <li>Large, quantified pain: ~120 vehicles queued per 10-min closure; <strong>41% of accidents
+      and 63% of deaths</strong> on the railways stem from crossing desperation; waits &gt;3 min trigger
+      risky behaviour.</li>
+      <li>It's <strong>preventive</strong> — re-routing before you're stuck beats the status quo, where
+      Google Maps routes you straight into the gate.</li>
+    </ul>
+  </div>
+  <div class="con">
+    <h4>The honest case against</h4>
+    <ul>
+      <li><strong>Low value once you're there</strong> — if you can see the gate is down, the app told
+      you nothing. The value is upstream, at route-choice time.</li>
+      <li><strong>Many crossings, short waits</strong> — lots of closures are 2–4 min, below the
+      re-route threshold. The high-value cases are a subset.</li>
+      <li><strong>Slowly shrinking market</strong> — every ROB built removes a crossing. A “win the next
+      decade” product, not a forever one.</li>
+    </ul>
+  </div>
+</div>
+<div class="callout verdict">
+  <span class="tag">Verdict</span>
+  Genuinely useful for a <strong>focused segment</strong> (busy corridors + fleets / time-critical
+  drivers); oversold as a mass-market everyday consumer app. Aim where being stuck actually costs money.
+</div>
+
+<h2><span class="num">4</span>Will people <em>actually</em> use it?</h2>
+<p>Separate <em>useful</em> from <em>used</em> — this is where most good ideas die.</p>
+<ul>
+  <li><strong>Standalone consumer app = low frequency.</strong> You'd only open it near a crossing —
+  weak daily habit, hard retention, costly to acquire users for a few-times-a-week utility. As pure
+  B2C, adoption is an uphill climb.</li>
+  <li><strong>It gets used when it's ambient, not opened:</strong>
+    <ul>
+      <li><em>Embedded in navigation</em> — a gate-closure layer inside routing you already do. The real
+      consumer path: become a light nav app for its corridors, or license the layer.</li>
+      <li><em>Push, not pull</em> — “Leave 5 min later; Vikhroli gate shuts 7:45–7:55” for saved commutes
+      turns a low-frequency tool into a passive daily value-add.</li>
+      <li><em>Fleet dashboards</em> — drivers adopt nothing; the dispatcher decides once and routes
+      everyone. Highest realistic usage, least adoption friction.</li>
+    </ul>
+  </li>
+  <li><strong>Trust gate</strong> — people abandon a predictor that's wrong twice. Usage is gated on a
+  published, measured accuracy number.</li>
+</ul>
+<div class="callout verdict">
+  <span class="tag">Honest answer</span>
+  <strong>Yes — but not as a standalone consumer download.</strong> It will be used as a fleet/B2B tool
+  (one buyer onboards many users) and a notification-first commute layer, ideally inside an existing
+  navigation flow. A cold standalone Play Store app is the <em>least</em> likely path to real usage.
+</div>
+
+<h2>Bottom line</h2>
+<table class="kv">
+  <tr><td>Useful?</td><td>Yes — for a focused, high-value segment, with quantified pain and a clear gap.</td></tr>
+  <tr><td>Why unbuilt?</td><td>Hard-to-get data + an unbuilt dataset + a cross-domain orphan problem +
+    a state solving it slowly in concrete. Those barriers are now partly lifted (RailRadar); the rest
+    (the gate dataset + proven accuracy) are exactly what a focused team can own.</td></tr>
+  <tr><td>Will it be used?</td><td>As a fleet/B2B tool and a notification-first commute layer — plausibly
+    yes. As a standalone consumer app — probably not. Build for the segment that pays for time.</td></tr>
+  <tr><td>The deciding factor</td><td><strong>Proven prediction accuracy on one real corridor</strong> —
+    “X% accurate within 5 minutes.” Usefulness, defensibility, adoption and monetisation all rest on
+    that single number. It is the whole ballgame.</td></tr>
+</table>
+
+<div class="callout warn">
+  <span class="tag">Recommended model</span>
+  Open-core / freemium consumer for adoption and accuracy data (the real moat), with revenue led by
+  <strong>B2B fleets / logistics</strong>, then B2G traffic analytics, then premium consumer. Avoid
+  leading with consumer ads alone.
+</div>
+
+<div class="footer-note">
+  <strong>Sources.</strong>
+  <ul class="sources">
+    <li>Level-crossing congestion &amp; the proposed app — ispp.org.in/leveraging-technology-to-mitigate-traffic-congestion-at-manned-railway-crossings-in-india</li>
+    <li>Waiting-time / risky-behaviour research — sciencedirect.com/science/article/abs/pii/S0003687018303776</li>
+    <li>Level-crossing statistics — indiastat.com/data/transport/manned-unmanned-railway-level-crossing</li>
+    <li>Crossing elimination programme (ROB/RUB, cost, targets) — pib.gov.in &amp; business-standard.com (broad-gauge UMLC elimination)</li>
+    <li>No official train-data API / access barriers — crisapis.indianrail.gov.in ; rapidapi.com/search/indian+railways</li>
+    <li>RailRadar API &amp; pricing — railradar.in/indian-railway-data-api</li>
+    <li>Competitor landscape — similarweb.com/website/railyatri.in/competitors</li>
+  </ul>
+  <p style="margin-top:3mm;">Railway Gate Tracker (RGT) · Market Study &amp; Feasibility · 21 June 2026 · Page generated for internal strategy.</p>
+</div>
+
+</div>
+</body>
+</html>

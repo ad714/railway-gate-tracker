@@ -4,12 +4,18 @@ _Last updated: 2026-06-21_
 
 Pick up here. This is the single source of truth for project state.
 
+> **Immediate next steps:** (1) user is provisioning the RailRadar key into `backend/.env`
+> -> then run `backend/probe.py` and finalise B. (2) Then a **UI/UX revamp for snappiness**
+> (Workstream E below).
+
 ## Canonical locations (everything else was deleted)
 - **Working copy:** `H:\RGT` (the ONLY active copy)
 - **GitHub (active):** https://github.com/ad714/railway-gate-tracker  (branch `master`)
 - **GitHub (archived V1 reference, has the original working Flask app):** `ad714/Railway_Gate_Tracker_RGT`
 - **Cold backup of all deleted copies (1.4 GB):** `H:\RGTApp\_RGT_cold_archive_2026-06\`
-- Plans/docs in repo: `RGT_MASTER_PLAN.md`, `docs/MARKET_STUDY.md`, this file.
+- Plans/docs in repo: `RGT_MASTER_PLAN.md`, `docs/MARKET_STUDY.md` (markdown source),
+  `docs/RGT_Market_Study.pdf` + `docs/RGT_Market_Study.html` (styled 5-page report,
+  rendered via Chrome headless), this file.
 
 ## What the project is
 Mobile-first (Expo/React Native + TypeScript) app that predicts which railway level-crossing
@@ -27,8 +33,19 @@ V2 frontend is polished but ran on mock data; we are wiring real data in.
   - `backend/api/backend.py` — fixed dead hardcoded station path -> `backend/data/...`,
     loads `.env`, wires predictor into `POST /railway_data`.
   - `backend/probe.py`, `requirements.txt`, `.env.example` — setup + live-shape capture.
-- **C — Production / accuracy: NOT STARTED.** Next up.
-- **D — Market study: DONE.** See `docs/MARKET_STUDY.md`.
+- **C — Production / accuracy: NOT STARTED.**
+- **E — UI/UX revamp (NEW, user-requested): NOT STARTED.** Redesign the Expo app to feel
+  "snappy". Independent of the RailRadar key — can run in parallel. Scope to confirm with user:
+  is "snappy" mainly (i) performance/perceived responsiveness (fast nav transitions, no jank,
+  skeleton loaders, optimistic UI, FlatList tuning) or (ii) a visual/UX redesign, or both?
+  Current app: 2 screens (`HomeScreen`, `RouteResultScreen`) switched by boolean state in
+  `App.tsx` (no real navigation library wired despite deps); theme tokens in `src/theme/tokens.ts`;
+  gate list via FlatList + mock data. Likely wins: real navigation + animated transitions, loading
+  skeletons while the predictor runs, micro-interactions, and a polished design pass. Consider
+  skills `ui-ux-pro-max` / `frontend-design` when starting.
+- **D — Market study: DONE.** Markdown at `docs/MARKET_STUDY.md`; styled PDF deliverable at
+  `docs/RGT_Market_Study.pdf` (source `docs/RGT_Market_Study.html`). To re-render the PDF after
+  editing the HTML: `chrome --headless --print-to-pdf=docs/RGT_Market_Study.pdf --print-to-pdf-no-header file:///H:/RGT/docs/RGT_Market_Study.html`.
 
 ## BLOCKING next action (user) to make B live
 1. Sign up at https://railradar.in -> create API key -> pick tier (free to start).
